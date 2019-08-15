@@ -40,7 +40,7 @@ const turn = () => {
 }
 
 const getMark = () => {
-  return playerTurn === 1 ? "x" : "o";
+  return playerTurn === 1 ? "X" : "O";
 }
 
 const checkForExpansion = () => {
