@@ -148,7 +148,7 @@ const createTable = (width, height) => {
 
     for (let x = 0; x < width; x++) {
       let cell = document.createElement("td");
-      let text = document.createTextNode("");
+      let text = document.createTextNode(" ");
       cell.appendChild(text);
       cell.onclick = () => {handleCellClick(cell)};
       row.appendChild(cell);
@@ -160,7 +160,7 @@ const createTable = (width, height) => {
 
 const handleCellClick = (elem) => {
   // Legal move
-  if(elem.innerHTML === "" || true && playing) {
+  if(elem.innerHTML === " " && playing) {
     elem.innerHTML = getMark();
     turn();
   } 
