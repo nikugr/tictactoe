@@ -6,6 +6,10 @@ var boardHeight = 5;
 var playing = true;
 
 const main = () => {
+  playerTurn = 1;
+  boardWidth = 5;
+  boardHeight = 5;
+  playing = true;
   let board = document.getElementById("board");
 
   board.appendChild(createTable(boardWidth, boardHeight));
