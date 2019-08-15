@@ -40,7 +40,7 @@ const turn = () => {
 }
 
 const getMark = () => {
-  return playerTurn === 1 ? "X" : "O";
+  return playerTurn === 1 ? "x" : "o";
 }
 
 const checkForExpansion = () => {
@@ -148,7 +148,7 @@ const createTable = (width, height) => {
 
     for (let x = 0; x < width; x++) {
       let cell = document.createElement("td");
-      let text = document.createTextNode("");
+      let text = document.createTextNode("x");
       cell.appendChild(text);
       cell.onclick = () => {handleCellClick(cell)};
       row.appendChild(cell);
