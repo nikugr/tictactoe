@@ -23,7 +23,7 @@ const init = () => {
   
   let board = document.getElementById("board");
   while(board.hasChildNodes()) {
-    board.firstChild().remove();
+    board.firstChild.remove();
   }
 }
 
@@ -54,6 +54,12 @@ const checkForExpansion = () => {
         }
         if(x+expansionThreshold >= boardWidth) {
           // expandHorizontal(x+expansionThreshold-boardWidth);
+        }
+        if(y-expansionThreshold < 0) {
+          // expandVertical(y-expansionThreshold);
+        }
+        if(y+expansionThreshold >= boardHeight) {
+          // expandVertical(y+expansionThreshold-boardHeight);
         }
       }
     }
