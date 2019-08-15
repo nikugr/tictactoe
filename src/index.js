@@ -30,7 +30,7 @@ const init = () => {
 const turn = () => {
   checkForWinner(getMark());
   if(playing) {
-    checkForExpansion();
+    //checkForExpansion();
     if(playerTurn === 1) {
       playerTurn = 2;
     } else {
