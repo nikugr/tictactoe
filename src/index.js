@@ -3,24 +3,39 @@ import "./styles.css";
 var playerTurn = 1;
 var boardWidth = 5;
 var boardHeight = 5;
+var expansionThreshold = 3;
 var playing = true;
 
 const main = () => {
-  playerTurn = 1;
-  boardWidth = 5;
-  boardHeight = 5;
-  playing = true;
+  init();
   let board = document.getElementById("board");
 
   board.appendChild(createTable(boardWidth, boardHeight));
 };
 
+const init = () => {
+  
+  playerTurn = 1;
+  boardWidth = 5;
+  boardHeight = 5;
+  expansionThreshold = 3;
+  playing = true;
+  
+  let board = document.getElementById("board");
+  while(board.hasChildNodes()) {
+    board.firstChild().remove();
+  }
+}
+
 const turn = () => {
   checkForWinner(getMark());
-  if(playerTurn === 1) {
-    playerTurn = 2;
-  } else {
-    playerTurn = 1;
+  if(playing) {
+    checkForExpansion();
+    if(playerTurn === 1) {
+      playerTurn = 2;
+    } else {
+      playerTurn = 1;
+    }
   }
 }
 
@@ -28,7 +43,24 @@ const getMark = () => {
   return playerTurn === 1 ? "x" : "o";
 }
 
-const checkForWinner = (mark) => {
+const checkForExpansion = () => {
+  let arr = createArrayFromTable();
+
+  for (let y = 0; y < boardHeight; y++) {
+    for (let x = 0; x < boardWidth; x++) {
+      if(arr[y][x] !== "") {
+        if(x-expansionThreshold < 0) {
+          // expandHorizontal(x-expansionThreshold);
+        }
+        if(x+expansionThreshold >= boardWidth) {
+          // expandHorizontal(x+expansionThreshold-boardWidth);
+        }
+      }
+    }
+  }
+}
+
+const createArrayFromTable = () => {
   let board = document.getElementById("board");
   let cells = board.querySelectorAll("td");
   
@@ -40,6 +72,11 @@ const checkForWinner = (mark) => {
       arr[y][x] = cells[x + boardWidth * y].innerHTML;
     }
   }
+  return arr;
+}
+
+const checkForWinner = (mark) => {
+  let arr = createArrayFromTable();
 
   // Check for the winner
   for (let y = 0; y < boardHeight; y++) {
