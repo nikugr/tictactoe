@@ -10,11 +10,10 @@ const main = () => {
   init();
   let board = document.getElementById("board");
 
-  board.appendChild(createTable(boardWidth, boardHeight));
+  board.append(createTable(boardWidth, boardHeight));
 };
 
 const init = () => {
-  
   playerTurn = 1;
   boardWidth = 5;
   boardHeight = 5;
@@ -25,6 +24,7 @@ const init = () => {
   while(board.hasChildNodes()) {
     board.firstChild.remove();
   }
+  
 }
 
 const turn = () => {
@@ -50,20 +50,70 @@ const checkForExpansion = () => {
     for (let x = 0; x < boardWidth; x++) {
       if(arr[y][x] !== "") {
         if(x-expansionThreshold < 0) {
-          // expandHorizontal(x-expansionThreshold);
+          expandHorizontal(x-expansionThreshold);
+          arr = createArrayFromTable();
+          x = y = 0;
         }
-        if(x+expansionThreshold >= boardWidth) {
-          // expandHorizontal(x+expansionThreshold-boardWidth);
+        else if(x+expansionThreshold > boardWidth-1) {
+          expandHorizontal(x+expansionThreshold-boardWidth+1);
+          arr = createArrayFromTable();
+          x = y = 0;
         }
-        if(y-expansionThreshold < 0) {
-          // expandVertical(y-expansionThreshold);
+        else if(y-expansionThreshold < 0) {
+          expandVertical(y-expansionThreshold);
+          arr = createArrayFromTable();
+          x = y = 0;
         }
-        if(y+expansionThreshold >= boardHeight) {
-          // expandVertical(y+expansionThreshold-boardHeight);
+        else if(y+expansionThreshold > boardHeight-1) {
+          expandVertical(y+expansionThreshold-boardHeight+1);
+          arr = createArrayFromTable();
+          x = y = 0;
         }
       }
     }
   }
+}
+
+const expandVertical = (amount) => {
+  let board = document.getElementById("board");
+  let table = board.querySelector("table");
+
+  for(let i = 0; i < Math.abs(amount); i++) {
+    let row = document.createElement("tr");
+    for(let j = 0; j < boardWidth; j++) {
+      let cell = document.createElement("td");
+      let text = document.createTextNode("");
+      cell.append(text);
+      cell.onclick = () => {handleCellClick(cell)};
+      row.append(cell);
+    }
+    if(amount > 0) {
+      table.append(row);
+    } else {
+      table.prepend(row);
+    }
+  }
+  boardHeight += Math.abs(amount);
+}
+
+const expandHorizontal = (amount) => {
+  let board = document.getElementById("board");
+  let rows = board.querySelectorAll("tr");
+
+  for(let row = 0; row < rows.length; row++) {
+    for(let i = 0; i < Math.abs(amount); i++) {
+      let cell = document.createElement("td");
+      let text = document.createTextNode("");
+      cell.append(text);
+      cell.onclick = () => {handleCellClick(cell)};
+      if(amount > 0) {
+        rows[row].append(cell);
+      } else {
+        rows[row].prepend(cell);
+      }
+    }
+  }
+  boardWidth += Math.abs(amount);
 }
 
 const createArrayFromTable = () => {
@@ -144,14 +194,14 @@ const createTable = (width, height) => {
 
   for (let y = 0; y < height; y++) {
     let row = document.createElement("tr");
-    table.appendChild(row);
+    table.append(row);
 
     for (let x = 0; x < width; x++) {
       let cell = document.createElement("td");
       let text = document.createTextNode("");
-      cell.appendChild(text);
+      cell.append(text);
       cell.onclick = () => {handleCellClick(cell)};
-      row.appendChild(cell);
+      row.append(cell);
     }
   }
 
