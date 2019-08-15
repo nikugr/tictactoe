@@ -6,7 +6,6 @@ var boardHeight = 5;
 var playing = true;
 
 const main = () => {
-  //let arr = generateArray(5, 5);
   let board = document.getElementById("board");
 
   board.appendChild(createTable(boardWidth, boardHeight));
@@ -92,19 +91,6 @@ const gameover = () => {
   alert("Player " + playerTurn + " won!");
   playing = false;
 }
-
-/*
-const generateArray = (width, height) => {
-  let arr = [];
-  for (let y = 0; y < height; y++) {
-    arr[y] = [];
-    for (let x = 0; x < width; x++) {
-      arr[y][x] = 0;
-    }
-  }
-  return arr;
-};
-*/
 
 const createTable = (width, height) => {
   let table = document.createElement("table");
