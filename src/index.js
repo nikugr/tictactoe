@@ -6,6 +6,9 @@ var boardHeight = 5;
 var expansionThreshold = 3;
 var playing = true;
 
+var EMPTYCHAR = "empty";
+var INFINITEBOARD = false;
+
 const main = () => {
   init();
   let board = document.getElementById("board");
@@ -30,7 +33,9 @@ const init = () => {
 const turn = () => {
   checkForWinner(getMark());
   if(playing) {
-    checkForExpansion();
+    if(INFINITEBOARD) {
+      checkForExpansion();
+    }
     if(playerTurn === 1) {
       playerTurn = 2;
     } else {
@@ -48,7 +53,7 @@ const checkForExpansion = () => {
 
   for (let y = 0; y < boardHeight; y++) {
     for (let x = 0; x < boardWidth; x++) {
-      if(arr[y][x] !== "") {
+      if(arr[y][x] !== EMPTYCHAR) {
         if(x-expansionThreshold < 0) {
           expandHorizontal(x-expansionThreshold);
           arr = createArrayFromTable();
@@ -82,7 +87,7 @@ const expandVertical = (amount) => {
     let row = document.createElement("tr");
     for(let j = 0; j < boardWidth; j++) {
       let cell = document.createElement("td");
-      let text = document.createTextNode("");
+      let text = document.createTextNode(EMPTYCHAR);
       cell.append(text);
       cell.onclick = () => {handleCellClick(cell)};
       row.append(cell);
@@ -103,7 +108,7 @@ const expandHorizontal = (amount) => {
   for(let row = 0; row < rows.length; row++) {
     for(let i = 0; i < Math.abs(amount); i++) {
       let cell = document.createElement("td");
-      let text = document.createTextNode("");
+      let text = document.createTextNode(EMPTYCHAR);
       cell.append(text);
       cell.onclick = () => {handleCellClick(cell)};
       if(amount > 0) {
@@ -198,7 +203,7 @@ const createTable = (width, height) => {
 
     for (let x = 0; x < width; x++) {
       let cell = document.createElement("td");
-      let text = document.createTextNode("");
+      let text = document.createTextNode(EMPTYCHAR);
       cell.append(text);
       cell.onclick = () => {handleCellClick(cell)};
       row.append(cell);
@@ -210,7 +215,7 @@ const createTable = (width, height) => {
 
 const handleCellClick = (elem) => {
   // Legal move
-  if(elem.innerHTML === "" && playing) {
+  if(elem.innerHTML === EMPTYCHAR && playing) {
     elem.innerHTML = getMark();
     turn();
   } 
