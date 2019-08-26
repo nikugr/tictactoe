@@ -6,8 +6,12 @@ var boardHeight = 5;
 var expansionThreshold = 3;
 var playing = true;
 
-var EMPTYCHAR = "_";
+var progressLoopId;
+
+var EMPTYCHAR = "";
 var INFINITEBOARD = false;
+var LOOPDELAY = 50; // 0.05s
+var TIMER = 10000; // 10s
 
 const main = () => {
   init();
@@ -27,14 +31,31 @@ const init = () => {
   while (board.hasChildNodes()) {
     board.firstChild.remove();
   }
+  progressLoopId = startProgressBar(LOOPDELAY);
 };
 
+const startProgressBar = (delay) => {
+  let elem = document.getElementById("progressbar-bar");
+  let progress = 0;
+  let id = setInterval( () => {
+    if(progress >= TIMER) {
+      turn();
+    } else {
+      progress += delay;
+      elem.style.width = (progress / TIMER * 100) + "%";
+    }
+  }, delay);
+  return id;
+}
+
 const turn = () => {
+  clearInterval(progressLoopId);
   checkForWinner(getMark());
   if (playing) {
     if (INFINITEBOARD) {
       checkForExpansion();
     }
+    progressLoopId = startProgressBar(LOOPDELAY);
     if (playerTurn === 1) {
       playerTurn = 2;
     } else {
@@ -231,6 +252,7 @@ const handleCellClick = elem => {
   // Legal move
   if (elem.innerHTML === EMPTYCHAR && playing) {
     elem.innerHTML = getMark();
+    elem.classList.add(getMark());
     turn();
   }
   // Illegal move

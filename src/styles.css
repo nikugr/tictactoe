@@ -1,15 +1,39 @@
 body {
-  font-family: sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
-/*
-table, td {
+table {
+  border-collapse: collapse;
+}
+
+table,
+td {
   border: 1px solid black;
 }
 
 td {
-  width: 2em;
-  height: 2em;
+  width: 60px;
+  height: 60px;
   text-align: center;
+  font-size: 30px;
 }
-*/
+
+.x {
+  background-color: #00ff08;
+}
+
+.o {
+  background-color: #ff7367;
+}
+
+#progressbar-bg {
+  border: 1px solid black;
+  height: 2em;
+  width: 10em;
+  margin: 1em;
+}
+
+#progressbar-bar {
+  height: 100%;
+  background-color: grey;
+}
