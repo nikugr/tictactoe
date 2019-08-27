@@ -15,10 +15,9 @@ td {
 }
 
 td {
-  width: 60px;
+  min-width: 60px;
   height: 60px;
   text-align: center;
-  vertical-align: middle;
   font-size: 30px;
 }
 
