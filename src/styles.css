@@ -1,3 +1,7 @@
+* {
+  font-family: Helvetica, sans-serif;
+}
+
 body {
   font-family: Helvetica, sans-serif;
 }
@@ -15,16 +19,18 @@ td {
   width: 60px;
   height: 60px;
   text-align: center;
-  vertical-align: center;
+  vertical-align: middle;
   font-size: 30px;
 }
 
 .x {
   background-color: #00ff08;
+  background-color: #7CFC00;
 }
 
 .o {
   background-color: #ff7367;
+  background-color: #FA8072;
 }
 
 #progressbar-bg {

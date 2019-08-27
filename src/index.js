@@ -32,6 +32,9 @@ const init = () => {
   while (board.hasChildNodes()) {
     board.firstChild.remove();
   }
+  if(progressLoopId != null) {
+    clearInterval(progressLoopId);
+  }
   progressLoopId = startProgressBar(LOOPDELAY);
 };
 
