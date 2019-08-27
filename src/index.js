@@ -12,6 +12,7 @@ var EMPTYCHAR = "";
 var INFINITEBOARD = false;
 var LOOPDELAY = 50; // 0.05s
 var TIMER = 10000; // 10s
+var USETIMER = false;
 
 const main = () => {
   init();
@@ -35,6 +36,9 @@ const init = () => {
 };
 
 const startProgressBar = (delay) => {
+  if(!USETIMER) {
+    return;
+  }
   let elem = document.getElementById("progressbar-bar");
   let progress = 0;
   let id = setInterval( () => {
