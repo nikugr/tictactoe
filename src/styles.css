@@ -22,13 +22,13 @@ td {
 }
 
 .x {
-  background-color: #00ff08;
-  /*background-color: #7CFC00; */
+  /*background-color: #00ff08; */
+  background-color: #7CFC00;
 }
 
 .o {
-  background-color: #ff7367;
-  /*background-color: #FA8072; */
+  /*background-color: #ff7367; */
+  background-color: #FA8072;
 }
 
 #progressbar-bg {
