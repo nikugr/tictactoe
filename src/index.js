@@ -9,7 +9,7 @@ var playing = true;
 var progressLoopId;
 
 var EMPTYCHAR = "";
-var INFINITEBOARD = true;
+var INFINITEBOARD = false;
 var LOOPDELAY = 50; // 0.05s
 var TIMER = 10000; // 10s
 var USETIMER = false;
