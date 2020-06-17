@@ -9,10 +9,10 @@ var playing = true;
 var progressLoopId;
 
 var EMPTYCHAR = "";
-var INFINITEBOARD = false;
+var INFINITEBOARD = true;
 var LOOPDELAY = 50; // 0.05s
 var TIMER = 10000; // 10s
-var USETIMER = true;
+var USETIMER = false;
 
 const main = () => {
   init();

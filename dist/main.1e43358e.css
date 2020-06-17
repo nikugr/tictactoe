@@ -1,0 +1,46 @@
+
+
+body {
+  font-family: helvetica, sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table,
+td {
+  border: 1px solid black;
+  font-family: helvetica;
+}
+
+td {
+  min-width: 60px;
+  height: 60px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.x {
+  /*background-color: #00ff08; */
+  background-color: #7CFC00;
+}
+
+.o {
+  /*background-color: #ff7367; */
+  background-color: #FA8072;
+}
+
+#progressbar-bg {
+  border: 1px solid black;
+  height: 2em;
+  width: 10em;
+  margin: 1em;
+}
+
+#progressbar-bar {
+  height: 100%;
+  background-color: grey;
+}
+
+/*# sourceMappingURL=/main.1e43358e.css.map */
